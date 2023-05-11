@@ -13,7 +13,7 @@ const ImageGallery = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const handleSearchSubmit = async query => {
     try {
@@ -46,11 +46,12 @@ const ImageGallery = () => {
   };
 
   const openModal = image => {
-    setSelectedImage(image);
+    const selectedIndex = images.findIndex(img => img.id === image.id);
+    setSelectedImageIndex(selectedIndex);
   };
 
   const closeModal = () => {
-    setSelectedImage(null);
+    setSelectedImageIndex(null);
   };
 
   return (
@@ -66,11 +67,18 @@ const ImageGallery = () => {
             ))}
           </ul>
           {images.length > 0 && <Button onClick={handleLoadMore} />}
-          {selectedImage && <Modal image={selectedImage} onClose={closeModal} />}
+          {selectedImageIndex !== null && (
+            <Modal
+              images={images}
+              selectedImageIndex={selectedImageIndex}
+              setSelectedImageIndex={setSelectedImageIndex}
+              onClose={closeModal}
+            />
+          )}
         </div>
       )}
     </div>
   );
 };
 
-export default ImageGallery
+export default ImageGallery;
