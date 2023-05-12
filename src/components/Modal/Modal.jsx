@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import '../styles.css';
 
 const Modal = ({ images, selectedImageIndex, setSelectedImageIndex, onClose }) => {
@@ -31,6 +32,13 @@ const Modal = ({ images, selectedImageIndex, setSelectedImageIndex, onClose }) =
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  images: PropTypes.array.isRequired,
+  selectedImageIndex: PropTypes.number.isRequired,
+  setSelectedImageIndex: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;
