@@ -18,16 +18,18 @@ const ImageGallery = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
   const [selectedDropdownValue, setSelectedDropdownValue] = useState(20);
+  const [totalHits, setTotalHits] = useState(0);
 
   useEffect(() => {
-    setHasReachedEnd(images.length === 0);
-  }, [images]);
+    setHasReachedEnd(images.length === totalHits);
+  }, [images, totalHits]);
 
   const handleSearchSubmit = async (query, dropdownValue) => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-  `https://pixabay.com/api/?q=${query}&page=1&key=${PixabayAPIKey}&image_type=photo&orientation=horizontal&per_page=${dropdownValue}`);
+        `https://pixabay.com/api/?q=${query}&page=1&key=${PixabayAPIKey}&image_type=photo&orientation=horizontal&per_page=${dropdownValue}`
+      );
 
       const { hits, totalHits } = response.data;
 
@@ -41,8 +43,8 @@ const ImageGallery = () => {
 
       setImages(hits);
       setSearchQuery(query);
-      setHasReachedEnd(hits.length === totalHits);
-      Notiflix.Notify.success(`${totalHits} images available for '${query}'`); 
+      setTotalHits(totalHits);
+      Notiflix.Notify.success(`${totalHits} images available for '${query}'`);
     } catch (error) {
       console.error('Error fetching images from Pixabay:', error);
     } finally {
@@ -66,7 +68,7 @@ const ImageGallery = () => {
         return;
       }
       for (let i = 0; i < hits.length; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 100));
       }
 
       setImages((prevImages) => [...prevImages, ...hits]);
@@ -77,7 +79,7 @@ const ImageGallery = () => {
         const loadedCount = images.length + hits.length;
         Notiflix.Notify.info(`Loaded ${loadedCount} images out of ${totalHits}`);
       }
-    } catch (error) {
+     } catch (error) {
       console.error('Error fetching more images from Pixabay:', error);
     } finally {
       setIsLoading(false);
@@ -94,7 +96,7 @@ const ImageGallery = () => {
   };
 
   return (
-     <div className="App">
+    <div className="App">
       <Searchbar onSubmit={handleSearchSubmit} onDropdownChange={setSelectedDropdownValue} />
       {isLoading ? (
         <Loader />
@@ -105,7 +107,7 @@ const ImageGallery = () => {
               <ImageGalleryItem key={image.id} image={image} onClick={openModal} />
             ))}
           </ul>
-          {!hasReachedEnd && <Button onClick={handleLoadMore} />}
+          {!hasReachedEnd && images.length > 0 && <Button onClick={handleLoadMore} />}
           {selectedImageIndex !== null && (
             <Modal
               images={images}
