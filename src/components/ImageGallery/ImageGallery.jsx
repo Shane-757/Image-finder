@@ -38,7 +38,7 @@ const ImageGallery = () => {
         return;
       }
       for (let i = 0; i < hits.length; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 5));
       }
 
       setImages(hits);
@@ -68,7 +68,7 @@ const ImageGallery = () => {
         return;
       }
       for (let i = 0; i < hits.length; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 0));
       }
 
       setImages((prevImages) => [...prevImages, ...hits]);
