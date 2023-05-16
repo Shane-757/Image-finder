@@ -4,7 +4,7 @@ import '../styles.css';
 
 const Searchbar = ({ onSubmit, onDropdownChange }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [dropdownValue, setDropdownValue] = useState(20); // Initial value for the dropdown
+  const [dropdownValue, setDropdownValue] = useState(20); 
 
   const handleSubmit = (event) => {
   event.preventDefault();
