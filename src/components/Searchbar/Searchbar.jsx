@@ -40,9 +40,7 @@ const Searchbar = ({ onSubmit, onDropdownChange }) => {
 
         <select className="SearchForm-dropdown" value={dropdownValue} onChange={handleDropdownChange}>
           <option value="20">20</option>
-          <option value="40">40</option>
-          <option value="60">60</option>
-          <option value="80">80</option>
+          <option value="50">50</option>
           <option value="100">100</option>
         </select>
       </form>
