@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from 'components/Button/Button';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
@@ -122,11 +121,6 @@ const ImageGallery = () => {
   );
 };
 
-ImageGallery.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectedImageIndex: PropTypes.number,
-  setSelectedImageIndex: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
+
 
 export default ImageGallery;

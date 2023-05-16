@@ -52,8 +52,7 @@ const Searchbar = ({ onSubmit, onDropdownChange }) => {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onDropdownChange: PropTypes.func.isRequired,
-  dropdownValue: PropTypes.number.isRequired, // Add this prop type
+  onDropdownChange: PropTypes.func.isRequired
 };
 
 export default Searchbar;
