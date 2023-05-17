@@ -6,6 +6,7 @@ import Loader from 'components/Loader/Loader';
 import Modal from 'components/Modal/Modal';
 import Searchbar from 'components/Searchbar/Searchbar';
 import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
 import '../styles.css';
 
 const PixabayAPIKey = '34086149-ce97166a0a74463c53bfd7508';
@@ -121,6 +122,12 @@ const ImageGallery = () => {
   );
 };
 
+ImageGallery.propTypes = {
+images: PropTypes.arrayOf(PropTypes.object),
+selectedImageIndex: PropTypes.number,
+setSelectedImageIndex: PropTypes.func,
+onClose: PropTypes.func,
+};
 
 
 export default ImageGallery;
