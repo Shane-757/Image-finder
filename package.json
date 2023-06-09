@@ -1,8 +1,8 @@
 {
-  "name": "image-search-react",
+  "name": "image-search-js",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shane-757.github.io/Image-search-react/",
+  "homepage": "https://shane-757.github.io/Image-finder/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
